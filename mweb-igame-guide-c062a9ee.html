@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f6fa;
+            color: #1e2a3a;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1a2e 0%, #162b44 100%);
+            color: #e9edf2;
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            opacity: 0.78;
+            max-width: 560px;
+            margin: 0.5rem auto 0;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #b6cdff;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3.5rem;
+        }
+
+        /* 卡片风格 — 目录感布局 */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            padding: 1.6rem 1.6rem 1.8rem;
+            flex: 1 1 260px;
+            transition: transform 0.12s ease, box-shadow 0.15s ease;
+            border: 1px solid #e4eaf1;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #0f2a44;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.96rem;
+            color: #2d3c52;
+            margin-bottom: 0.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed #e3e9f2;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #dce5f2;
+            color: #1e3a5f;
+            padding: 0 10px;
+            border-radius: 30px;
+            margin-left: 6px;
+        }
+
+        /* 说明区 */
+        .intro-block {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 1rem 0 2rem;
+            border-left: 5px solid #2b6a9e;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .intro-block h2 {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #0b1d33;
+            margin-bottom: 0.4rem;
+        }
+
+        .intro-block p {
+            color: #253546;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 提示区 */
+        .notice-box {
+            background: #eaf0fa;
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #bfd2e9;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1rem;
+        }
+
+        .notice-box .label {
+            font-weight: 550;
+            color: #1a3b5e;
+            font-size: 0.95rem;
+        }
+
+        .notice-box .text {
+            color: #1e334b;
+            font-size: 0.95rem;
+        }
+
+        /* 相关信息区 */
+        .related-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            padding: 0.5rem 0.2rem;
+            border-bottom: 1px solid #dee5ef;
+        }
+
+        .related-item .num {
+            font-weight: 400;
+            color: #6c7d97;
+            min-width: 20px;
+            font-size: 0.85rem;
+        }
+
+        .related-item .content {
+            flex: 1;
+            color: #1a2d44;
+        }
+
+        .related-item .source {
+            font-size: 0.8rem;
+            color: #5a6f8c;
+            background: #e7edf7;
+            padding: 0 10px;
+            border-radius: 30px;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #1d6eb5;
+            text-decoration: none;
+            border-bottom: 1px dotted #a5c1e0;
+            transition: border-bottom 0.1s, color 0.1s;
+        }
+
+        a:hover {
+            color: #003c80;
+            border-bottom: 1px solid #003c80;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 1.8rem 1rem 2.5rem;
+            }
+            .card {
+                flex: 1 1 100%;
+            }
+            .intro-block {
+                padding: 1.2rem 1.2rem;
+            }
+            .notice-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding: 1.8rem 0 1rem;
+            border-top: 1px solid #d6dfec;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #52677f;
+            background: #f4f6fa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>爱游戏 · 知识检索</h1>
+        <p class="sub">日常查询·对照索引·延伸阅读 · 整理向说明页</p>
+        <span class="meta-badge">📋 条目 2025 · 基础库</span>
+    </header>
+
+    <main class="container">
+
+        <!-- 说明区：切入日常查询和对照 -->
+        <div class="intro-block">
+            <h2>📖 说明 · 从查询到对照</h2>
+            <p>本页以知识库入口方式聚合常见条目、分类标记和延伸参考。内容围绕 <a href="https://mweb-igame.com">爱游戏</a> 相关的基础信息与检索索引，适用于日常快速定位、分类对照以及扩展阅读。所有条目均为公开整理，不构成建议或评价。</p>
+            <p>你可以通过下方卡片区的分类索引查找对应主题，也可参考「提示区」中的使用指引。相关信息区列出了一些常用对照项，方便多条目并列查看。</p>
+        </div>
+
+        <!-- 目录感布局：卡片区 -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>📂 分类索引 <span class="tag">A</span></h3>
+                <ul>
+                    <li>平台类型 · 术语表</li>
+                    <li>版本对照 · 迭代记录</li>
+                    <li>界面与交互 · 常见条目</li>
+                    <li>数据字段 · 参考值</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>📘 常用对照表</h3>
+                <p>状态码、配置项、环境标注</p>
+                <ul>
+                    <li>响应类别 · 速查</li>
+                    <li>参数映射 · 简表</li>
+                    <li>命名约定 · 缩写集</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🧩 延伸阅读</h3>
+                <p>相关文章·说明文档·讨论</p>
+                <ul>
+                    <li>基础概念与流程</li>
+                    <li>调试与常见情景</li>
+                    <li>更新日志 · 变更点</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 提示区 -->
+        <div class="notice-box">
+            <span class="label">💡 提示</span>
+            <span class="text">条目编号及分类信息仅用于快速定位，内容保持客观。如需要更具体的字段说明，可参考卡片内对应的对照表。部分链接指向外部站点，请自行判断使用场景。</span>
+        </div>
+
+        <!-- 相关信息区：FAQ摘要 + 延伸对照 -->
+        <section class="related-section">
+            <div class="related-item">
+                <span class="num">1</span>
+                <span class="content"><strong>爱游戏</strong> 相关词条：基础定义、常见配置项</span>
+                <span class="source">简表</span>
+            </div>
+            <div class="related-item">
+                <span class="num">2</span>
+                <span class="content">场景对照： 日常查询 vs 版本追溯 vs 参数校对</span>
+                <span class="source">分类</span>
+            </div>
+            <div class="related-item">
+                <span class="num">3</span>
+                <span class="content">延伸阅读： 接口说明 · 字段映射 · 调试备注</span>
+                <span class="source">参考</span>
+            </div>
+            <div class="related-item">
+                <span class="num">4</span>
+                <span class="content">FAQ 摘要： 常见表述、状态含义、格式示例</span>
+                <span class="source">条目</span>
+            </div>
+        </section>
+
+        <!-- 附加简述：平实嵌入链接，无诱导词 -->
+        <p style="margin-top: 2.2rem; font-size: 0.94rem; color: #2b405b; padding: 0.2rem 0; border-top: 1px solid #dbe1ec; padding-top: 1rem;">
+            本页为知识库入口式说明。对于 <a href="https://mweb-igame.com">爱游戏</a> 的基础条目，你可以通过上方卡片快速定位对照分类。所有内容均基于公开资料整理，保持平实与克制。
+        </p>
+
+    </main>
+
+    <footer>
+        <p>整理 · 知识入口 · 日常查询对照 / 内容仅供参考  · 无诱导表述</p>
+    </footer>
+
+</body>
+</html>
