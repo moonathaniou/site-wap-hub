@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 稳定启动页 | msports-igame.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f3f0;
+            color: #1e1e1e;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 深色头图 —— 简洁博客式封面 */
+        .hero {
+            background: #0f172a;
+            color: #e7e5e4;
+            padding: 5rem 1.5rem 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.6rem;
+            color: #fafaf9;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 640px;
+            margin: 0.8rem auto 0 auto;
+            font-weight: 300;
+            border-top: 1px solid #334155;
+            padding-top: 1.2rem;
+        }
+
+        .hero .tagline {
+            margin-top: 1.8rem;
+            display: inline-block;
+            background: #1e293b;
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            border: 1px solid #334155;
+        }
+
+        /* 正文区域：浅色、留白舒适 */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 3.5rem 1.8rem;
+            background: #ffffff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+            flex: 1;
+        }
+
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            margin: 2.2rem 0 0.6rem 0;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+            border-left: 5px solid #6366f1;
+            padding-left: 0.9rem;
+        }
+
+        .content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .content p {
+            margin: 1rem 0 1.2rem 0;
+            font-size: 1.05rem;
+        }
+
+        .content p.lead {
+            font-size: 1.15rem;
+            color: #2c2c2c;
+            background: #f8f7f5;
+            padding: 1.2rem 1.6rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #6366f1;
+        }
+
+        /* 引用提示块 */
+        .tip-quote {
+            background: #f1f5f9;
+            padding: 1.4rem 1.8rem;
+            border-radius: 20px;
+            margin: 2.2rem 0;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            font-style: normal;
+            position: relative;
+        }
+
+        .tip-quote::before {
+            content: "💡 信息提示";
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .tip-quote strong {
+            color: #0f172a;
+        }
+
+        /* 特点卡片 —— 轻描淡写，不喧宾夺主 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .feature-card {
+            background: #faf9f7;
+            border-radius: 16px;
+            padding: 1.3rem 1.2rem;
+            border: 1px solid #edeae6;
+            transition: border-color 0.25s;
+        }
+
+        .feature-card:hover {
+            border-color: #c7d2fe;
+        }
+
+        .feature-card span {
+            display: block;
+            font-weight: 470;
+            font-size: 1.05rem;
+            margin-bottom: 0.35rem;
+            color: #1e293b;
+        }
+
+        .feature-card small {
+            color: #4b5563;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 580px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 1.8rem 1.2rem 2.8rem 1.2rem;
+            }
+        }
+
+        /* 链接强调色：indigo */
+        a {
+            color: #4f46e5;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #c7d2fe;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+
+        a:hover {
+            color: #3730a3;
+            text-decoration-color: #6366f1;
+        }
+
+        /* 访问句 + 页脚 */
+        .visit-note {
+            margin-top: 2.8rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ece8e3;
+            font-size: 0.98rem;
+            color: #4b5563;
+            text-align: center;
+        }
+
+        .visit-note a {
+            font-weight: 500;
+        }
+
+        .footer-meta {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8c8c8c;
+            padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+            background: #f5f3f0;
+            border-top: 1px solid #e2ddd6;
+        }
+
+        .footer-meta span {
+            opacity: 0.7;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2ddd6;
+            margin: 1.8rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 深色头图：博客式封面 -->
+    <header class="hero">
+        <h1>爱游戏 · 稳定入口说明</h1>
+        <div class="tagline">msports-igame.com</div>
+        <div class="sub">一个安静的启动页 · 记录访问路径与页面边界</div>
+    </header>
+
+    <!-- 正文区 -->
+    <main class="content">
+        <p class="lead">
+            本文档旨在介绍 <strong>爱游戏</strong> 这一站点的常规访问方式与内容定位。
+            如果你希望快速了解该平台的呈现逻辑、页面结构以及如何稳定地找到它，
+            下面的段落可以当作一份简洁的参考。
+        </p>
+
+        <h2>从域名到页面</h2>
+        <p>
+            对许多用户而言，直接通过浏览器地址栏输入域名是最直接的访问习惯。
+            <strong>msports-igame.com</strong> 是 <a href="https://msports-igame.com">爱游戏</a> 当前使用的网址，
+            页面中并未设置复杂的跳转链，访问后可看到较完整的游戏信息与导航结构。
+            建议初次访问时检查浏览器地址栏是否显示正确的域名，以避免误入相似名称的站点。
+        </p>
+
+        <h2>常规内容与模块</h2>
+        <p>
+            进入 <a href="https://msports-igame.com">爱游戏</a> 之后，可以看到主要区域围绕游戏分类、
+            活动提示以及账户操作入口展开。页面整体采用卡片式布局，信息密度中等，
+            标题区与内容区划分清晰。如果你有特定的游戏偏好，可以通过顶部导航栏找到对应分区。
+            目前该站没有强制弹窗或过度重定向，加载速度处于正常范围。
+        </p>
+
+        <!-- 特点卡片（简洁博客式嵌入） -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span>🔍 结构稳定</span>
+                <small>页面框架自上而下：导航、焦点图、列表、底部。数月内未出现大幅改版。</small>
+            </div>
+            <div class="feature-card">
+                <span>📌 入口统一</span>
+                <small>主要访问入口即为当前域名，无二级跳转或隐藏路径，适合保存书签。</small>
+            </div>
+            <div class="feature-card">
+                <span>⚙️ 响应适配</span>
+                <small>在桌面与移动浏览器上均保持可读布局，未出现元素重叠或功能丢失。</small>
+            </div>
+            <div class="feature-card">
+                <span>🧾 信息呈现</span>
+                <small>游戏列表以海报+标题为主，文字描述克制，较少使用夸张宣传语。</small>
+            </div>
+        </div>
+
+        <h2>使用场景与预期</h2>
+        <p>
+            如果你正在寻找一个持续运营且页面结构相对固定的游戏信息站点，
+            <a href="https://msports-igame.com">爱游戏</a> 可以作为一个备选参考。
+            站内内容偏向综合性，既有热门推荐也有分类浏览。需要注意：任何线上页面都可能随运营调整而微调，
+            建议将本页所述作为当前阶段的客观描述，而非永久承诺。
+        </p>
+
+        <!-- 引用提示块 -->
+        <div class="tip-quote">
+            <strong>关于访问稳定性：</strong> 截至目前，该域名解析正常，https 证书有效，
+            页面资源加载无跨域报错。如果你遇到无法打开或样式错乱的情况，可以先检查本地网络、
+            清除缓存或更换 DNS 后再试。<br>
+            <span style="display:inline-block; margin-top:0.6rem; color:#475569;">📎 本提示基于近期观察整理，仅供参考。</span>
+        </div>
+
+        <h2>常见疑问摘要</h2>
+        <p>
+            <strong>Q：是否需要注册才能浏览全部内容？</strong><br>
+            部分游戏详情与活动页面需要登录账户后才能完整查看，但首页与分类列表无需登录即可访问。<br><br>
+            <strong>Q：页面是否存在多语言版本？</strong><br>
+            当前以中文为主，未发现显式语言切换按钮。界面术语也以中文表述。<br><br>
+            <strong>Q：适合长期保存为书签吗？</strong><br>
+            若你认可该站的内容方向与更新节奏，将 <a href="https://msports-igame.com">爱游戏</a> 加入书签是合理的。
+            建议同时关注域名有效性，并留意页面底部的版权年份变化。
+        </p>
+
+        <hr>
+
+        <!-- 访问句：自然嵌入页面底部 -->
+        <div class="visit-note">
+            <span>如你需要再次定位该站点，可直接输入域名或通过搜索直达</span>
+            <a href="https://msports-igame.com">爱游戏</a>。
+            <span style="display:block; margin-top:0.3rem; font-size:0.9rem;">本页仅作静态说明，不收集任何信息。</span>
+        </div>
+    </main>
+
+    <footer class="footer-meta">
+        <span>简洁博客式说明页 · 方向：稳定入口与页面说明</span><br>
+        <span style="font-size:0.75rem;">msports-igame.com 相关介绍 · 内容仅供参考</span>
+    </footer>
+</body>
+</html>
